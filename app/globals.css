@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&display=swap");
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  --rt-body: #fffcf9;
+  --rt-paper: #fffdf9;
+  --rt-cream: #f8f3ea;
+  --rt-cream-2: #f0e7db;
+
+  --rt-ink: #2d252b;
+  --rt-ink-soft: #6a5f66;
+  --rt-ink-mute: #998f95;
+
+  --rt-pink: #e77ea5;
+  --rt-pink-deep: #e77ea5;
+  --rt-pink-soft: #efb9cd;
+  --rt-blush: #f6dde7;
+
+  --rt-line: #ddd3d8;
+  --rt-line-soft: #eee7ea;
+
+  --rt-sans: "Hanken Grotesk", system-ui, -apple-system, sans-serif;
+  --rt-pad: clamp(18px, 4.5vw, 80px);
+  --rt-maxw: 1560px;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-rt-body: var(--rt-body);
+  --color-rt-paper: var(--rt-paper);
+  --color-rt-cream: var(--rt-cream);
+  --color-rt-cream-2: var(--rt-cream-2);
+
+  --color-rt-ink: var(--rt-ink);
+  --color-rt-ink-soft: var(--rt-ink-soft);
+  --color-rt-ink-mute: var(--rt-ink-mute);
+
+  --color-rt-pink: var(--rt-pink);
+  --color-rt-pink-deep: var(--rt-pink-deep);
+  --color-rt-pink-soft: var(--rt-pink-soft);
+  --color-rt-blush: var(--rt-blush);
+
+  --color-rt-line: var(--rt-line);
+  --color-rt-line-soft: var(--rt-line-soft);
+
+  --font-rt: var(--rt-sans);
+
+  --spacing-rt-pad: var(--rt-pad);
+  --width-rt-maxw: var(--rt-maxw);
+}
+
+body {
+  direction: rtl;
+  background: var(--rt-body);
+  color: var(--rt-ink);
+  font-family: var(--rt-sans);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
