@@ -1,7 +1,7 @@
 import React from "react";
 import { getHeadingTag, getTextAlign, getHeadingSize, getColor } from "@/utils/fonts";
 
-type HeadingProps = {
+interface HeadingProps {
     content?: string;
     level?: number;
     textAlign?: string;

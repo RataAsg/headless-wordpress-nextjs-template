@@ -3,7 +3,7 @@ import { Heading } from "@/components/Heading/Heading";
 import { Cover } from "@/components/Cover/Cover";
 import { Paragraph } from "../Paragraph/Paragraph";
 
-type BlockRendererProps = {
+interface BlockRendererProps {
     blocks: Block[];
 };
 

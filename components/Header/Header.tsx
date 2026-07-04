@@ -2,6 +2,7 @@ import Link from "next/link";
 import { MainMenu } from "../Menu/MainMenu";
 import { MENU_LOCATIONS } from "@/lib/types/menu";
 import { getHeaderCta } from "@/services/cta";
+import { ButtonLink } from "../Button/ButtonLink";
 
 export async function Header() {
     const cta = await getHeaderCta();
@@ -22,12 +23,9 @@ export async function Header() {
                 {/* Action Button (Optional) */}
                 <div className="flex items-center gap-4">
                     {cta ? (
-                        <Link
-                            href={cta.uri}
-                            className="rounded-full bg-blue-600 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700"
-                        >
-                            {cta.title}
-                        </Link>
+                        <ButtonLink
+                            destination={cta.uri}
+                            label={cta.title} />
                     ) : null}
                 </div>
             </div>

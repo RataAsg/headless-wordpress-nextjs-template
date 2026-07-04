@@ -1,6 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&display=swap");
 @import "tailwindcss";
 
+@utility btn {
+  @apply inline-flex items-center justify-center rounded-full bg-blue-600 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700;
+}
+
+@utility btn-primary {
+  @apply bg-blue-600 text-white hover:bg-blue-700;
+}
+
+@utility btn-outline {
+  @apply border border-blue-600 text-blue-600 hover:bg-blue-50;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;

@@ -1,17 +1,23 @@
-export type HeaderCtaLink =
-    | { __typename?: "Page"; id: string; uri: string }
-    | null;
+export type HeaderCtaLink = {
+    __typename?: "Page";
+    id: string;
+    uri: string;
+} | null;
 
-export type HeaderCta = {
+export interface HeaderCta {
     title: string;
     uri: string;
-};
+}
 
-export type HeaderCtaQueryResponse = {
-    acfOptionsHeader?: {
-        HeaderSettings?: {
-            headerCallToActionButtonTitle?: string | null;
-            headerCallToActionUrl?: HeaderCtaLink;
-        } | null;
-    } | null;
-};
+export interface HeaderSettings {
+    headerCallToActionButtonTitle?: string | null;
+    headerCallToActionUrl?: HeaderCtaLink;
+}
+
+export interface AcfOptionsHeader {
+    HeaderSettings?: HeaderSettings | null;
+}
+
+export interface HeaderCtaQueryResponse {
+    acfOptionsHeader?: AcfOptionsHeader | null;
+}

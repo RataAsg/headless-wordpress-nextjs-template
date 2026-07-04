@@ -1,7 +1,7 @@
 import { absoluteToRelativeUrls } from "@/utils/absoluteToRelativeUrls";
 import { getColor, getTextAlign } from "@/utils/fonts";
 
-type ParagraphProps = {
+interface ParagraphProps {
     content?: string;
     textAlign?: string;
     textColor?: string;
@@ -12,7 +12,7 @@ export function Paragraph({ content = "", textAlign, textColor }: ParagraphProps
     const color = getColor(textColor);
 
     return <p
-        className={alignClass}
+        className={alignClass || undefined}
         style={color ? { color } : undefined}
         dangerouslySetInnerHTML={{ __html: absoluteToRelativeUrls(content) }}
     />

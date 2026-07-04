@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getMenuByLocation } from "@/services/menu";
 import { flatToTree } from "@/utils/flatToTree";
 
-type MainMenuProps = {
+interface MainMenuProps {
     // Use a location enum value like MENU_LOCATIONS.MAIN
     location: string;
     className?: string;

@@ -1,32 +1,8 @@
-import client from "@/lib/apollo-client";
-import { gql } from "@apollo/client";
 import { BlockRenderer } from "@/components/BlockRenderer";
-import { Block, cleanAndTransformBlocks } from "@/utils/cleanAndTransformBlocks";
-
-// Precise definition of types
-type PageData = {
-  nodeByUri: {
-    id: string;
-    blocks: Block[];
-  } | null;
-};
+import { getPageStaticProps } from "@/utils/getPageStaticProps";
 
 export default async function HomePage() {
-  const response = await client.query({
-    query: gql`
-      query GetPageContent {
-        nodeByUri(uri: "/") {
-          ... on Page {
-            id
-            blocks
-          }
-        }
-      }
-    `,
-  });
-
-  const data = response.data as PageData;
-  const page = data.nodeByUri;
+  const page = await getPageStaticProps();
 
   // If no page is found
   if (!page) {
@@ -39,11 +15,9 @@ export default async function HomePage() {
     );
   }
 
-  const blocks = cleanAndTransformBlocks(page.blocks);
-
   return (
     <div>
-      <BlockRenderer blocks={blocks} />
+      <BlockRenderer blocks={page.blocks} />
     </div>
   );
 }
