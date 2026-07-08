@@ -5,15 +5,20 @@ import { Paragraph } from "../Paragraph/Paragraph";
 import { CallToAction } from "../CallToAction/CallToAction";
 import { CtaBlockData } from "@/lib/types/acf";
 import { getBlockData } from "@/utils/getBlockData";
+import { Columns } from "../Columns";
+import { Column } from "../Column";
+import Image from "next/image";
 
 interface BlockRendererProps {
     blocks: Block[];
 };
 
 export function BlockRenderer({ blocks }: BlockRendererProps) {
+    const firstImageIndex = blocks.findIndex((b) => b.name === "core/image");
+
     return (
         <>
-            {blocks.map((block) => {
+            {blocks.map((block, index) => {
                 const key = block.id;
 
                 switch (block.name) {
@@ -70,6 +75,50 @@ export function BlockRenderer({ blocks }: BlockRendererProps) {
                                 innerBlocks={block.innerBlocks}
                             />
                         );
+                    }
+
+                    case "core/columns": {
+                        return (
+                            <Columns
+                                key={key}
+                                isStackedOnMobile={block.attributes?.isStackedOnMobile as boolean}>
+                                <BlockRenderer blocks={block.innerBlocks || []} />
+                            </Columns>
+                        )
+                    }
+
+                    case "core/column": {
+                        return (
+                            <Column
+                                key={key}
+                                width={block.attributes?.width as string}>
+                                <BlockRenderer blocks={block.innerBlocks || []} />
+                            </Column>
+                        )
+                    }
+
+                    case "core/block":
+                    case "core/group": {
+                        return (
+                            <div key={key}>
+                                <BlockRenderer blocks={block.innerBlocks || []} />
+                            </div>
+                        );
+                    }
+
+                    case "core/image": {
+                        const isPriority = index === firstImageIndex;
+
+                        return (
+                            <Image
+                                key={key}
+                                src={block.attributes?.url as string}
+                                width={block.attributes?.width as number}
+                                height={block.attributes?.height as number}
+                                alt={(block.attributes?.alt as string) || ""}
+                                priority={isPriority}
+                            />
+                        )
                     }
 
                     default: {
