@@ -2,6 +2,9 @@ import { Block } from "@/utils/cleanAndTransformBlocks";
 import { Heading } from "@/components/Heading/Heading";
 import { Cover } from "@/components/Cover/Cover";
 import { Paragraph } from "../Paragraph/Paragraph";
+import { CallToAction } from "../CallToAction/CallToAction";
+import { CtaBlockData } from "@/lib/types/acf";
+import { getBlockData } from "@/utils/getBlockData";
 
 interface BlockRendererProps {
     blocks: Block[];
@@ -14,6 +17,25 @@ export function BlockRenderer({ blocks }: BlockRendererProps) {
                 const key = block.id;
 
                 switch (block.name) {
+                    case "acf/cta-button": {
+                        const data = getBlockData<CtaBlockData>(block.attributes?.data);
+
+                        const align = data?.cta_align ?? "right";
+                        const label = data?.cta_label ?? "";
+                        const destination = data?.cta_destination?.url ?? "/";
+
+                        if (!label) return null;
+
+                        return (
+                            <CallToAction
+                                key={key}
+                                align={align}
+                                label={label}
+                                destination={destination}
+                            />
+                        );
+                    }
+
                     case "core/heading": {
                         return (
                             <Heading
@@ -51,7 +73,7 @@ export function BlockRenderer({ blocks }: BlockRendererProps) {
                     }
 
                     default: {
-                        console.warn("Unknown block:", block.name);
+                        console.warn("Unknown block:", block);
                         return null;
                     }
                 }

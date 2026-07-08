@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { normalizeUrl } from "@/utils/normalizeUrls";
 
 interface ButtonLinkProps {
     destination: string,
@@ -6,9 +7,11 @@ interface ButtonLinkProps {
 }
 
 export function ButtonLink({ destination, label }: ButtonLinkProps) {
+    const url = normalizeUrl(destination);
+
     return (
         <Link
-            href={destination}
+            href={url}
             className="btn btn-primary"
         >
             {label}
